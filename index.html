@@ -23,13 +23,7 @@
       padding: 30px 16px 60px;
     }
 
-    .page {
-      width: 100%;
-      max-width: 500px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
+    .page { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 20px; }
 
     .header-card {
       background: #ffffff;
@@ -49,35 +43,53 @@
       background: linear-gradient(90deg, #ff9eb5, #ffda79, #a8edac, #88ccff, #c4aaff);
       border-radius: 28px 28px 0 0;
     }
-
     .emoji-row {
-      font-size: 2.2rem;
-      margin-bottom: 6px;
-      display: flex;
-      justify-content: center;
-      gap: 8px;
+      font-size: 2.2rem; margin-bottom: 6px;
+      display: flex; justify-content: center; gap: 8px;
       animation: bounce-icons 3s ease-in-out infinite;
     }
-    @keyframes bounce-icons {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
+    @keyframes bounce-icons { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+    h1 { font-size: 2.2rem; color: #3a3a6e; letter-spacing: 2px; text-shadow: 3px 3px 0 rgba(136,204,255,0.5); }
+    .sub { margin-top: 6px; font-size: 0.85rem; color: #a0aec0; letter-spacing: 2px; font-family:'Nanum Gothic Coding',monospace; }
 
-    h1 {
-      font-size: 2.2rem;
-      color: #3a3a6e;
-      letter-spacing: 2px;
-      line-height: 1.1;
-      text-shadow: 3px 3px 0 rgba(136,204,255,0.5);
+    /* 모드 선택 */
+    .mode-card {
+      background: #fff;
+      border-radius: 22px;
+      padding: 16px 18px;
+      box-shadow: 0 6px 0 #d8e8f8, 0 10px 20px rgba(0,0,0,0.06);
+      border: 3px solid rgba(255,255,255,0.9);
     }
-    .sub {
-      margin-top: 6px;
-      font-size: 0.85rem;
-      color: #a0aec0;
-      letter-spacing: 2px;
-      font-family: 'Nanum Gothic Coding', monospace;
+    .mode-title { font-size: 0.85rem; color: #7a8faa; letter-spacing: 1px; margin-bottom: 10px; }
+    .mode-btns { display: flex; gap: 8px; }
+    .mode-btn {
+      flex: 1; padding: 10px 6px; border: 2.5px solid transparent;
+      border-radius: 14px; font-family:'Jua',sans-serif; font-size: 0.88rem;
+      cursor: pointer; transition: all 0.2s; background: #f4f6fb; color: #7a8faa;
+      letter-spacing: 1px;
     }
+    .mode-btn.active { background: #e8f0ff; border-color: #7eb3ff; color: #3a5fbf; box-shadow: 0 4px 0 #b0ccff; }
+    .mode-btn:hover:not(.active) { background: #eef2fb; }
 
+    /* 통계 바 */
+    .stat-card {
+      background: #fff;
+      border-radius: 22px;
+      padding: 16px 18px;
+      box-shadow: 0 6px 0 #d8e8f8, 0 10px 20px rgba(0,0,0,0.06);
+      border: 3px solid rgba(255,255,255,0.9);
+      display: none;
+    }
+    .stat-card.show { display: block; }
+    .stat-title { font-size: 0.85rem; color: #7a8faa; letter-spacing: 1px; margin-bottom: 10px; }
+    .stat-bars { display: flex; flex-direction: column; gap: 5px; }
+    .stat-row { display: flex; align-items: center; gap: 8px; }
+    .stat-num { width: 28px; font-size: 0.75rem; color: #555; text-align: right; font-family:'Nanum Gothic Coding',monospace; }
+    .stat-bar-wrap { flex: 1; background: #f0f4fb; border-radius: 6px; height: 14px; overflow: hidden; }
+    .stat-bar { height: 100%; border-radius: 6px; transition: width 0.8s ease; }
+    .stat-cnt { font-size: 0.7rem; color: #aaa; width: 36px; font-family:'Nanum Gothic Coding',monospace; }
+
+    /* 번호 공 */
     .ball-card {
       background: #fff8f0;
       border-radius: 28px;
@@ -86,271 +98,118 @@
       border: 3px solid rgba(255,255,255,0.9);
       text-align: center;
     }
-
-    .balls-wrap {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      min-height: 90px;
-      align-items: center;
-      margin-bottom: 6px;
-    }
+    .balls-wrap { display:flex; justify-content:center; gap:10px; flex-wrap:wrap; min-height:90px; align-items:center; margin-bottom:6px; }
 
     .ball {
-      width: 68px;
-      height: 68px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      color: white;
-      position: relative;
-      transform: scale(0) rotate(-30deg);
-      opacity: 0;
-      transition: transform 0.45s cubic-bezier(0.34, 1.7, 0.64, 1), opacity 0.3s;
-      cursor: default;
-      user-select: none;
+      width:68px; height:68px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.5rem; color:white; position:relative;
+      transform:scale(0) rotate(-30deg); opacity:0;
+      transition: transform 0.45s cubic-bezier(0.34,1.7,0.64,1), opacity 0.3s;
+      cursor:default; user-select:none;
     }
-    .ball.show { transform: scale(1) rotate(0deg); opacity: 1; }
-    .ball:hover {
-      transform: scale(1.15) rotate(-8deg) !important;
-      transition: transform 0.2s cubic-bezier(0.34,1.7,0.64,1) !important;
-    }
-    .ball::before {
-      content: '';
-      position: absolute;
-      top: 12%; left: 18%;
-      width: 35%; height: 25%;
-      background: rgba(255,255,255,0.55);
-      border-radius: 50%;
-      filter: blur(2px);
-      pointer-events: none;
-    }
-    .ball::after {
-      content: '';
-      position: absolute;
-      bottom: 12%; right: 14%;
-      width: 18%; height: 12%;
-      background: rgba(255,255,255,0.25);
-      border-radius: 50%;
-      pointer-events: none;
-    }
+    .ball.show { transform:scale(1) rotate(0deg); opacity:1; }
+    .ball:hover { transform:scale(1.15) rotate(-8deg) !important; transition:transform 0.2s cubic-bezier(0.34,1.7,0.64,1) !important; }
+    .ball::before { content:''; position:absolute; top:12%;left:18%;width:35%;height:25%;background:rgba(255,255,255,0.55);border-radius:50%;filter:blur(2px);pointer-events:none; }
+    .ball::after  { content:''; position:absolute; bottom:12%;right:14%;width:18%;height:12%;background:rgba(255,255,255,0.25);border-radius:50%;pointer-events:none; }
 
-    .empty { background: #e8e8f0; box-shadow: 0 6px 0 #c8c8d8, inset 0 3px 6px rgba(255,255,255,0.6); }
-    .c1 { background: #FF8C42; box-shadow: 0 8px 0 #d96b20, 0 10px 20px rgba(255,140,66,0.35), inset 0 3px 6px rgba(255,255,255,0.4); }
-    .c2 { background: #4DBBFF; box-shadow: 0 8px 0 #1e97e8, 0 10px 20px rgba(77,187,255,0.35), inset 0 3px 6px rgba(255,255,255,0.4); }
-    .c3 { background: #FF5E7E; box-shadow: 0 8px 0 #d93059, 0 10px 20px rgba(255,94,126,0.35), inset 0 3px 6px rgba(255,255,255,0.4); }
-    .c4 { background: #B57BFF; box-shadow: 0 8px 0 #8c4ee0, 0 10px 20px rgba(181,123,255,0.35), inset 0 3px 6px rgba(255,255,255,0.4); }
-    .c5 { background: #3DD9A0; box-shadow: 0 8px 0 #1daf7b, 0 10px 20px rgba(61,217,160,0.35), inset 0 3px 6px rgba(255,255,255,0.4); }
+    .empty { background:#e8e8f0; box-shadow:0 6px 0 #c8c8d8,inset 0 3px 6px rgba(255,255,255,0.6); }
+    .c1 { background:#FF8C42; box-shadow:0 8px 0 #d96b20,0 10px 20px rgba(255,140,66,.35),inset 0 3px 6px rgba(255,255,255,.4); }
+    .c2 { background:#4DBBFF; box-shadow:0 8px 0 #1e97e8,0 10px 20px rgba(77,187,255,.35),inset 0 3px 6px rgba(255,255,255,.4); }
+    .c3 { background:#FF5E7E; box-shadow:0 8px 0 #d93059,0 10px 20px rgba(255,94,126,.35),inset 0 3px 6px rgba(255,255,255,.4); }
+    .c4 { background:#B57BFF; box-shadow:0 8px 0 #8c4ee0,0 10px 20px rgba(181,123,255,.35),inset 0 3px 6px rgba(255,255,255,.4); }
+    .c5 { background:#3DD9A0; box-shadow:0 8px 0 #1daf7b,0 10px 20px rgba(61,217,160,.35),inset 0 3px 6px rgba(255,255,255,.4); }
 
-    .btn-wrap { margin-top: 18px; }
+    .btn-wrap { margin-top:18px; }
     .btn {
-      background: linear-gradient(160deg, #ff7eb3, #ff5580);
-      color: white;
-      border: none;
-      padding: 16px 44px;
-      font-family: 'Jua', sans-serif;
-      font-size: 1.25rem;
-      letter-spacing: 3px;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 8px 0 #c73060, 0 12px 24px rgba(255,85,128,0.3);
-      transition: transform 0.12s, box-shadow 0.12s;
+      background:linear-gradient(160deg,#ff7eb3,#ff5580); color:white; border:none;
+      padding:16px 44px; font-family:'Jua',sans-serif; font-size:1.25rem;
+      letter-spacing:3px; border-radius:50px; cursor:pointer;
+      box-shadow:0 8px 0 #c73060,0 12px 24px rgba(255,85,128,.3);
+      transition:transform .12s,box-shadow .12s;
     }
-    .btn:hover { transform: translateY(-3px); box-shadow: 0 11px 0 #c73060, 0 16px 28px rgba(255,85,128,0.35); }
-    .btn:active { transform: translateY(4px); box-shadow: 0 4px 0 #c73060, 0 6px 14px rgba(255,85,128,0.25); }
+    .btn:hover { transform:translateY(-3px); box-shadow:0 11px 0 #c73060,0 16px 28px rgba(255,85,128,.35); }
+    .btn:active { transform:translateY(4px); box-shadow:0 4px 0 #c73060,0 6px 14px rgba(255,85,128,.25); }
 
-    .message {
-      margin-top: 14px;
-      font-size: 1rem;
-      color: #7c6fcd;
-      min-height: 1.4rem;
-      opacity: 0;
-      transform: translateY(6px);
-      transition: opacity 0.4s, transform 0.4s;
-    }
-    .message.show { opacity: 1; transform: translateY(0); }
+    .message { margin-top:14px; font-size:1rem; color:#7c6fcd; min-height:1.4rem; opacity:0; transform:translateY(6px); transition:opacity .4s,transform .4s; }
+    .message.show { opacity:1; transform:translateY(0); }
 
+    /* 기록 카드 */
     .history-card {
-      background: #f0fff8;
-      border-radius: 28px;
-      padding: 22px 20px;
-      box-shadow: 0 8px 0 #b8ecd8, 0 12px 24px rgba(0,0,0,0.07);
-      border: 3px solid rgba(255,255,255,0.9);
+      background:#f0fff8; border-radius:28px; padding:22px 20px;
+      box-shadow:0 8px 0 #b8ecd8,0 12px 24px rgba(0,0,0,.07);
+      border:3px solid rgba(255,255,255,0.9);
     }
+    .history-title { font-size:1rem; color:#5a8a72; letter-spacing:2px; margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+    .count-badge { background:#3DD9A0; color:white; font-size:.75rem; padding:2px 10px; border-radius:20px; box-shadow:0 3px 0 #1daf7b; }
 
-    .history-title {
-      font-size: 1rem;
-      color: #5a8a72;
-      letter-spacing: 2px;
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .count-badge {
-      background: #3DD9A0;
-      color: white;
-      font-size: 0.75rem;
-      padding: 2px 10px;
-      border-radius: 20px;
-      box-shadow: 0 3px 0 #1daf7b;
-    }
+    .history-list { display:flex; flex-direction:column; gap:8px; max-height:420px; overflow-y:auto; padding-right:4px; }
+    .history-list::-webkit-scrollbar { width:6px; }
+    .history-list::-webkit-scrollbar-track { background:rgba(0,0,0,.05); border-radius:4px; }
+    .history-list::-webkit-scrollbar-thumb { background:#b0dcc8; border-radius:4px; }
 
-    .history-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      max-height: 420px;
-      overflow-y: auto;
-      padding-right: 4px;
-    }
-    .history-list::-webkit-scrollbar { width: 6px; }
-    .history-list::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 4px; }
-    .history-list::-webkit-scrollbar-thumb { background: #b0dcc8; border-radius: 4px; }
+    .history-item { background:white; border-radius:16px; padding:10px 14px; display:flex; align-items:center; gap:6px; box-shadow:0 4px 0 #d8eedf,0 6px 12px rgba(0,0,0,.04); animation:popIn .35s cubic-bezier(0.34,1.7,0.64,1); }
+    @keyframes popIn { from{transform:scale(.85) translateY(-8px);opacity:0} to{transform:scale(1) translateY(0);opacity:1} }
+    .hist-no { font-size:.7rem; color:#b0bcc8; width:22px; flex-shrink:0; font-family:'Nanum Gothic Coding',monospace; }
 
-    .history-item {
-      background: white;
-      border-radius: 16px;
-      padding: 10px 14px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      box-shadow: 0 4px 0 #d8eedf, 0 6px 12px rgba(0,0,0,0.04);
-      animation: popIn 0.35s cubic-bezier(0.34,1.7,0.64,1);
-    }
-    @keyframes popIn {
-      from { transform: scale(0.85) translateY(-8px); opacity: 0; }
-      to   { transform: scale(1) translateY(0); opacity: 1; }
-    }
+    .mini-ball { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.75rem; color:white; flex-shrink:0; position:relative; }
+    .mini-ball::before { content:''; position:absolute; top:10%;left:18%;width:34%;height:24%;background:rgba(255,255,255,.5);border-radius:50%;filter:blur(1px); }
+    .m1{background:#FF8C42;box-shadow:0 3px 0 #d96b20}
+    .m2{background:#4DBBFF;box-shadow:0 3px 0 #1e97e8}
+    .m3{background:#FF5E7E;box-shadow:0 3px 0 #d93059}
+    .m4{background:#B57BFF;box-shadow:0 3px 0 #8c4ee0}
+    .m5{background:#3DD9A0;box-shadow:0 3px 0 #1daf7b}
 
-    .hist-no {
-      font-size: 0.7rem;
-      color: #b0bcc8;
-      width: 22px;
-      flex-shrink: 0;
-      font-family: 'Nanum Gothic Coding', monospace;
-    }
+    .hist-mode { font-size:.65rem; color:#b0bcc8; margin-left:auto; flex-shrink:0; font-family:'Nanum Gothic Coding',monospace; }
 
-    .mini-ball {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      color: white;
-      flex-shrink: 0;
-      position: relative;
-    }
-    .mini-ball::before {
-      content: '';
-      position: absolute;
-      top: 10%; left: 18%;
-      width: 34%; height: 24%;
-      background: rgba(255,255,255,0.5);
-      border-radius: 50%;
-      filter: blur(1px);
-    }
-    .m1 { background: #FF8C42; box-shadow: 0 3px 0 #d96b20; }
-    .m2 { background: #4DBBFF; box-shadow: 0 3px 0 #1e97e8; }
-    .m3 { background: #FF5E7E; box-shadow: 0 3px 0 #d93059; }
-    .m4 { background: #B57BFF; box-shadow: 0 3px 0 #8c4ee0; }
-    .m5 { background: #3DD9A0; box-shadow: 0 3px 0 #1daf7b; }
+    .confetti { position:fixed; pointer-events:none; z-index:9999; animation:confettiFall 1.6s ease-out forwards; }
+    @keyframes confettiFall { 0%{opacity:1;transform:translateY(0) rotate(0deg) scale(1)} 100%{opacity:0;transform:translateY(350px) rotate(900deg) scale(.3)} }
 
-    .confetti {
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      animation: confettiFall 1.6s ease-out forwards;
-    }
-    @keyframes confettiFall {
-      0%   { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
-      100% { opacity: 0; transform: translateY(350px) rotate(900deg) scale(0.3); }
-    }
+    .empty-history { text-align:center; color:#b0c8be; font-size:.9rem; padding:20px 0; }
 
-    .empty-history {
-      text-align: center;
-      color: #b0c8be;
-      font-size: 0.9rem;
-      padding: 20px 0;
-    }
+    .download-wrap { display:none; gap:10px; margin-top:14px; justify-content:center; }
+    .download-wrap.visible { display:flex; }
+    .dl-btn { flex:1; border:none; border-radius:16px; padding:12px 0; font-family:'Jua',sans-serif; font-size:.95rem; letter-spacing:1px; cursor:pointer; transition:transform .12s,box-shadow .12s; display:flex; align-items:center; justify-content:center; gap:6px; }
+    .dl-btn:hover { transform:translateY(-2px); }
+    .dl-btn:active { transform:translateY(3px); }
+    .dl-txt { background:#fffbe6; color:#a07820; box-shadow:0 5px 0 #e6c84a,0 8px 16px rgba(230,200,74,.25); }
+    .dl-txt:hover { box-shadow:0 7px 0 #e6c84a,0 10px 20px rgba(230,200,74,.3); }
+    .dl-txt:active { box-shadow:0 2px 0 #e6c84a; }
+    .dl-csv { background:#e8f5e9; color:#2e7d32; box-shadow:0 5px 0 #81c784,0 8px 16px rgba(129,199,132,.25); }
+    .dl-csv:hover { box-shadow:0 7px 0 #81c784,0 10px 20px rgba(129,199,132,.3); }
+    .dl-csv:active { box-shadow:0 2px 0 #81c784; }
 
-    .download-wrap {
-      display: none;
-      gap: 10px;
-      margin-top: 14px;
-      justify-content: center;
-    }
-    .download-wrap.visible { display: flex; }
-
-    .dl-btn {
-      flex: 1;
-      border: none;
-      border-radius: 16px;
-      padding: 12px 0;
-      font-family: 'Jua', sans-serif;
-      font-size: 0.95rem;
-      letter-spacing: 1px;
-      cursor: pointer;
-      transition: transform 0.12s, box-shadow 0.12s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
-    .dl-btn:hover  { transform: translateY(-2px); }
-    .dl-btn:active { transform: translateY(3px); }
-
-    .dl-txt {
-      background: #fffbe6;
-      color: #a07820;
-      box-shadow: 0 5px 0 #e6c84a, 0 8px 16px rgba(230,200,74,0.25);
-    }
-    .dl-txt:hover  { box-shadow: 0 7px 0 #e6c84a, 0 10px 20px rgba(230,200,74,0.3); }
-    .dl-txt:active { box-shadow: 0 2px 0 #e6c84a; }
-
-    .dl-csv {
-      background: #e8f5e9;
-      color: #2e7d32;
-      box-shadow: 0 5px 0 #81c784, 0 8px 16px rgba(129,199,132,0.25);
-    }
-    .dl-csv:hover  { box-shadow: 0 7px 0 #81c784, 0 10px 20px rgba(129,199,132,0.3); }
-    .dl-csv:active { box-shadow: 0 2px 0 #81c784; }
-
-    .toast {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%) translateY(80px);
-      background: #3a3a6e;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 50px;
-      font-size: 0.9rem;
-      letter-spacing: 1px;
-      box-shadow: 0 6px 20px rgba(58,58,110,0.35);
-      transition: transform 0.35s cubic-bezier(0.34,1.5,0.64,1), opacity 0.3s;
-      opacity: 0;
-      z-index: 9999;
-      white-space: nowrap;
-    }
-    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+    .toast { position:fixed; bottom:30px; left:50%; transform:translateX(-50%) translateY(80px); background:#3a3a6e; color:white; padding:12px 24px; border-radius:50px; font-size:.9rem; letter-spacing:1px; box-shadow:0 6px 20px rgba(58,58,110,.35); transition:transform .35s cubic-bezier(0.34,1.5,0.64,1),opacity .3s; opacity:0; z-index:9999; white-space:nowrap; }
+    .toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
   </style>
 </head>
 <body>
-
 <div class="page">
 
+  <!-- 헤더 -->
   <div class="header-card">
     <div class="emoji-row">🍀🎰✨</div>
     <h1>행운의 로또</h1>
     <p class="sub">LUCKY NUMBER PICKER</p>
   </div>
 
+  <!-- 모드 선택 -->
+  <div class="mode-card">
+    <div class="mode-title">🎯 번호 생성 방식 선택</div>
+    <div class="mode-btns">
+      <button class="mode-btn active" id="mode-freq"   onclick="setMode('freq')">🔥 빈출번호 우선</button>
+      <button class="mode-btn"        id="mode-random" onclick="setMode('random')">🎲 완전 랜덤</button>
+      <button class="mode-btn"        id="mode-mix"    onclick="setMode('mix')">⚖️ 혼합</button>
+    </div>
+  </div>
+
+  <!-- 통계 바 (빈출/혼합 모드일 때 표시) -->
+  <div class="stat-card show" id="stat-card">
+    <div class="stat-title">📊 역대 빈출 TOP 15 (1~1213회 기준)</div>
+    <div class="stat-bars" id="stat-bars"></div>
+  </div>
+
+  <!-- 번호 공 -->
   <div class="ball-card">
     <div class="balls-wrap" id="balls">
       <div class="ball empty" id="b1"></div>
@@ -366,6 +225,7 @@
     <p class="message" id="msg"></p>
   </div>
 
+  <!-- 기록 -->
   <div class="history-card">
     <div class="history-title">
       📋 최근 추첨 기록
@@ -384,187 +244,201 @@
 <div class="toast" id="toast"></div>
 
 <script>
-  const messages = [
-    '🎉 이번 주 당첨은 바로 당신!',
-    '✨ 행운이 가득합니다!',
-    '💫 대박의 기운이 느껴져요!',
-    '🌟 1등 당첨을 기원합니다!',
-    '🍀 오늘은 특별한 날이 될 거예요!',
-    '🔥 이 번호, 느낌이 좋아요!',
-    '🌈 행운의 여신이 미소짓고 있어요!',
-    '🎊 당첨 예감이 팍팍 옵니다!',
-    '💖 오늘 복권 사러 가세요!',
-    '🏆 이번엔 진짜인 것 같아요!'
-  ];
-  const confettiColors = ['#FF8C42','#4DBBFF','#FF5E7E','#B57BFF','#3DD9A0','#FFD700','#ff7eb3'];
+// ====================================================
+// 동행복권 공식 통계 (1~1213회, 보너스 제외)
+// 출처: 동행복권 공식 통계 2026.02.28 기준
+// ====================================================
+const FREQ = {
+   1:167, 2:152, 3:169, 4:159, 5:153, 6:163, 7:168, 8:155, 9:133,10:158,
+  11:164,12:177,13:174,14:169,15:162,16:166,17:169,18:172,19:165,20:167,
+  21:164,22:141,23:146,24:163,25:150,26:164,27:179,28:151,29:152,30:155,
+  31:164,32:141,33:172,34:181,35:161,36:162,37:171,38:169,39:165,40:172,
+  41:147,42:153,43:162,44:160,45:171
+};
 
-  function getClass(n) {
-    if (n <= 10) return 'c1';
-    if (n <= 20) return 'c2';
-    if (n <= 30) return 'c3';
-    if (n <= 40) return 'c4';
-    return 'c5';
+// 가중치 기반 풀 생성
+function buildWeightedPool(power) {
+  // power: 1=약한가중치, 2=강한가중치
+  const pool = [];
+  for (let n = 1; n <= 45; n++) {
+    const w = Math.pow(FREQ[n], power);
+    const count = Math.round(w / 10);
+    for (let i = 0; i < count; i++) pool.push(n);
   }
-  function getMiniClass(n) {
-    if (n <= 10) return 'm1';
-    if (n <= 20) return 'm2';
-    if (n <= 30) return 'm3';
-    if (n <= 40) return 'm4';
-    return 'm5';
+  return pool;
+}
+
+function pickFromPool(pool, count) {
+  const poolCopy = [...pool];
+  const result = [];
+  while (result.length < count) {
+    const idx = Math.floor(Math.random() * poolCopy.length);
+    const n = poolCopy.splice(idx, 1)[0];
+    if (!result.includes(n)) result.push(n);
   }
+  return result.sort((a,b)=>a-b);
+}
 
-  function pick6() {
-    const pool = Array.from({length:45}, (_,i)=>i+1);
-    const res = [];
-    while (res.length < 6) {
-      const i = Math.floor(Math.random() * pool.length);
-      res.push(pool.splice(i, 1)[0]);
-    }
-    return res.sort((a,b)=>a-b);
-  }
+function pickRandom() {
+  const pool = Array.from({length:45},(_,i)=>i+1);
+  const res = [];
+  while(res.length<6){ const i=Math.floor(Math.random()*pool.length); res.push(pool.splice(i,1)[0]); }
+  return res.sort((a,b)=>a-b);
+}
 
-  function spawnConfetti() {
-    const btn = document.getElementById('mainBtn');
-    const rect = btn.getBoundingClientRect();
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top;
-    for (let i = 0; i < 32; i++) {
-      const el = document.createElement('div');
-      el.className = 'confetti';
-      const size = 7 + Math.random() * 9;
-      el.style.cssText = `
-        left:${cx + (Math.random()-0.5)*140}px;
-        top:${cy}px;
-        width:${size}px;height:${size}px;
-        background:${confettiColors[Math.floor(Math.random()*confettiColors.length)]};
-        animation-duration:${0.9+Math.random()*0.9}s;
-        animation-delay:${Math.random()*0.25}s;
-        border-radius:${Math.random()>0.5?'50%':'3px'};
-      `;
-      document.body.appendChild(el);
-      setTimeout(()=>el.remove(), 2400);
-    }
-  }
+// 모드
+let currentMode = 'freq';
+function setMode(m) {
+  currentMode = m;
+  document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('mode-'+m).classList.add('active');
+  const sc = document.getElementById('stat-card');
+  if(m==='random') sc.classList.remove('show');
+  else sc.classList.add('show');
+}
 
-  let history = [];
-  let running = false;
-
-  function generate() {
-    if (running) return;
-    running = true;
-
-    const balls = Array.from({length:6}, (_,i)=>document.getElementById(`b${i+1}`));
-    const msgEl = document.getElementById('msg');
-
-    balls.forEach(b => { b.className = 'ball empty'; b.textContent = ''; });
-    msgEl.classList.remove('show');
-
-    const nums = pick6();
-
-    nums.forEach((n, i) => {
-      setTimeout(() => {
-        const b = balls[i];
-        b.className = `ball ${getClass(n)} show`;
-        b.textContent = n;
-        if (i === 5) {
-          spawnConfetti();
-          msgEl.textContent = messages[Math.floor(Math.random() * messages.length)];
-          msgEl.classList.add('show');
-          addHistory(nums);
-          running = false;
-        }
-      }, i * 160);
+// 통계 바 렌더
+function renderStatBars() {
+  const sorted = Object.entries(FREQ).sort((a,b)=>b[1]-a[1]).slice(0,15);
+  const maxVal = sorted[0][1];
+  const colors = ['#FF8C42','#FF8C42','#4DBBFF','#4DBBFF','#FF5E7E','#FF5E7E','#B57BFF','#B57BFF','#3DD9A0','#3DD9A0','#FF8C42','#4DBBFF','#FF5E7E','#B57BFF','#3DD9A0'];
+  const container = document.getElementById('stat-bars');
+  container.innerHTML = '';
+  sorted.forEach(([n, cnt], i) => {
+    const pct = (cnt / maxVal * 100).toFixed(1);
+    const row = document.createElement('div');
+    row.className = 'stat-row';
+    row.innerHTML = `
+      <span class="stat-num">${n}번</span>
+      <div class="stat-bar-wrap">
+        <div class="stat-bar" style="width:0%;background:${colors[i]}" data-pct="${pct}"></div>
+      </div>
+      <span class="stat-cnt">${cnt}회</span>
+    `;
+    container.appendChild(row);
+  });
+  // 애니메이션
+  setTimeout(()=>{
+    container.querySelectorAll('.stat-bar').forEach(b=>{
+      b.style.width = b.dataset.pct + '%';
     });
+  }, 100);
+}
+
+// 번호 생성
+function generate() {
+  if(running) return;
+  running = true;
+
+  const balls = Array.from({length:6},(_,i)=>document.getElementById(`b${i+1}`));
+  const msgEl = document.getElementById('msg');
+  balls.forEach(b=>{ b.className='ball empty'; b.textContent=''; });
+  msgEl.classList.remove('show');
+
+  let nums;
+  if(currentMode === 'freq') {
+    const pool = buildWeightedPool(2); // 강한 빈출 가중치
+    nums = pickFromPool(pool, 6);
+  } else if(currentMode === 'mix') {
+    // 빈출 3개 + 랜덤 3개 혼합
+    const freqPool = buildWeightedPool(2);
+    const freqPick = pickFromPool(freqPool, 3);
+    const remaining = Array.from({length:45},(_,i)=>i+1).filter(n=>!freqPick.includes(n));
+    const randPick = [];
+    while(randPick.length<3){ const i=Math.floor(Math.random()*remaining.length); const n=remaining.splice(i,1)[0]; randPick.push(n); }
+    nums = [...freqPick,...randPick].sort((a,b)=>a-b);
+  } else {
+    nums = pickRandom();
   }
 
-  function addHistory(nums) {
-    history.unshift(nums);
-    if (history.length > 10) history.pop();
+  nums.forEach((n, i) => {
+    setTimeout(() => {
+      const b = balls[i];
+      b.className = `ball ${getClass(n)} show`;
+      b.textContent = n;
+      if(i===5){
+        spawnConfetti();
+        msgEl.textContent = messages[Math.floor(Math.random()*messages.length)];
+        msgEl.classList.add('show');
+        addHistory(nums, currentMode);
+        running = false;
+      }
+    }, i*160);
+  });
+}
 
-    document.getElementById('count-badge').textContent = `${history.length} / 10`;
+// ---- 공통 유틸 ----
+const messages = ['🎉 이번 주 당첨은 바로 당신!','✨ 행운이 가득합니다!','💫 대박의 기운이 느껴져요!','🌟 1등 당첨을 기원합니다!','🍀 오늘은 특별한 날이 될 거예요!','🔥 이 번호, 느낌이 좋아요!','🌈 행운의 여신이 미소짓고 있어요!','🎊 당첨 예감이 팍팍 옵니다!','💖 오늘 복권 사러 가세요!','🏆 이번엔 진짜인 것 같아요!'];
+const confettiColors = ['#FF8C42','#4DBBFF','#FF5E7E','#B57BFF','#3DD9A0','#FFD700','#ff7eb3'];
 
-    const el = document.getElementById('history');
-    const emptyMsg = document.getElementById('empty-msg');
-    if (emptyMsg) emptyMsg.remove();
+function getClass(n){ if(n<=10)return'c1';if(n<=20)return'c2';if(n<=30)return'c3';if(n<=40)return'c4';return'c5'; }
+function getMiniClass(n){ if(n<=10)return'm1';if(n<=20)return'm2';if(n<=30)return'm3';if(n<=40)return'm4';return'm5'; }
 
-    el.innerHTML = '';
-    history.forEach((row, idx) => {
-      const item = document.createElement('div');
-      item.className = 'history-item';
-      const no = document.createElement('div');
-      no.className = 'hist-no';
-      no.textContent = `#${idx+1}`;
-      item.appendChild(no);
-      row.forEach(n => {
-        const mb = document.createElement('div');
-        mb.className = `mini-ball ${getMiniClass(n)}`;
-        mb.textContent = n;
-        item.appendChild(mb);
-      });
-      el.appendChild(item);
-    });
+const modeLabel = { freq:'🔥빈출', random:'🎲랜덤', mix:'⚖️혼합' };
 
-    document.getElementById('download-wrap').classList.add('visible');
+function spawnConfetti() {
+  const btn = document.getElementById('mainBtn');
+  const rect = btn.getBoundingClientRect();
+  const cx = rect.left+rect.width/2, cy = rect.top;
+  for(let i=0;i<32;i++){
+    const el=document.createElement('div'); el.className='confetti';
+    const size=7+Math.random()*9;
+    el.style.cssText=`left:${cx+(Math.random()-.5)*140}px;top:${cy}px;width:${size}px;height:${size}px;background:${confettiColors[Math.floor(Math.random()*confettiColors.length)]};animation-duration:${.9+Math.random()*.9}s;animation-delay:${Math.random()*.25}s;border-radius:${Math.random()>.5?'50%':'3px'}`;
+    document.body.appendChild(el); setTimeout(()=>el.remove(),2400);
   }
+}
 
-  function getNow() {
-    const d = new Date();
-    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
-  }
+let history = [], running = false;
 
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2200);
-  }
+function addHistory(nums, mode) {
+  history.unshift({nums, mode});
+  if(history.length>10) history.pop();
+  document.getElementById('count-badge').textContent=`${history.length} / 10`;
+  const el=document.getElementById('history');
+  const em=document.getElementById('empty-msg'); if(em) em.remove();
+  el.innerHTML='';
+  history.forEach(({nums:row, mode:m}, idx)=>{
+    const item=document.createElement('div'); item.className='history-item';
+    const no=document.createElement('div'); no.className='hist-no'; no.textContent=`#${idx+1}`; item.appendChild(no);
+    row.forEach(n=>{ const mb=document.createElement('div'); mb.className=`mini-ball ${getMiniClass(n)}`; mb.textContent=n; item.appendChild(mb); });
+    const ml=document.createElement('span'); ml.className='hist-mode'; ml.textContent=modeLabel[m]||''; item.appendChild(ml);
+    el.appendChild(item);
+  });
+  document.getElementById('download-wrap').classList.add('visible');
+}
 
-  function downloadTXT() {
-    if (!history.length) return;
-    const now = getNow();
-    let txt = '🍀 행운의 로또 추첨 기록\n';
-    txt += `📅 저장일시: ${now}\n`;
-    txt += '─'.repeat(30) + '\n\n';
-    history.forEach((row, i) => {
-      txt += `#${String(i+1).padStart(2,'0')}  ${row.map(n=>String(n).padStart(2,' ')).join('  -  ')}\n`;
-    });
-    txt += `\n${'─'.repeat(30)}\n총 ${history.length}회 추첨`;
-    const blob = new Blob([txt], { type: 'text/plain;charset=utf-8' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = `로또번호_${now.replace(/[: ]/g,'-')}.txt`;
-    a.click();
-    showToast('📄 TXT 파일이 저장되었어요!');
-  }
+function getNow(){ const d=new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`; }
+function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2200); }
 
-  function downloadCSV() {
-    if (!history.length) return;
-    const now = getNow();
-    let csv = '\uFEFF';
-    csv += '순번,1번,2번,3번,4번,5번,6번\n';
-    history.forEach((row, i) => {
-      csv += `${i+1},${row.join(',')}\n`;
-    });
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = `로또번호_${now.replace(/[: ]/g,'-')}.csv`;
-    a.click();
-    showToast('📊 CSV 파일이 저장되었어요!');
-  }
+function downloadTXT(){
+  if(!history.length) return;
+  const now=getNow();
+  let txt='🍀 행운의 로또 추첨 기록\n';
+  txt+=`📅 저장일시: ${now}\n`+'─'.repeat(32)+'\n\n';
+  history.forEach(({nums:row,mode:m},i)=>{
+    txt+=`#${String(i+1).padStart(2,'0')}  ${row.map(n=>String(n).padStart(2,' ')).join('  -  ')}  [${modeLabel[m]}]\n`;
+  });
+  txt+='\n'+'─'.repeat(32)+`\n총 ${history.length}회 추첨`;
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([txt],{type:'text/plain;charset=utf-8'}));
+  a.download=`로또번호_${now.replace(/[: ]/g,'-')}.txt`; a.click(); showToast('📄 TXT 파일이 저장되었어요!');
+}
 
-  window.onload = () => {
-    const balls = Array.from({length:6}, (_,i)=>document.getElementById(`b${i+1}`));
-    balls.forEach((b, i) => {
-      b.style.opacity = '0';
-      b.style.transform = 'scale(0)';
-      setTimeout(() => {
-        b.style.transition = 'transform 0.4s cubic-bezier(0.34,1.7,0.64,1), opacity 0.3s';
-        b.style.transform = 'scale(1)';
-        b.style.opacity = '1';
-      }, i * 80 + 100);
-    });
-  };
+function downloadCSV(){
+  if(!history.length) return;
+  const now=getNow();
+  let csv='\uFEFF순번,1번,2번,3번,4번,5번,6번,생성방식\n';
+  history.forEach(({nums:row,mode:m},i)=>{ csv+=`${i+1},${row.join(',')},${modeLabel[m]}\n`; });
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  a.download=`로또번호_${now.replace(/[: ]/g,'-')}.csv`; a.click(); showToast('📊 CSV 파일이 저장되었어요!');
+}
+
+window.onload=()=>{
+  renderStatBars();
+  Array.from({length:6},(_,i)=>document.getElementById(`b${i+1}`)).forEach((b,i)=>{
+    b.style.opacity='0'; b.style.transform='scale(0)';
+    setTimeout(()=>{ b.style.transition='transform .4s cubic-bezier(0.34,1.7,0.64,1),opacity .3s'; b.style.transform='scale(1)'; b.style.opacity='1'; }, i*80+100);
+  });
+};
 </script>
 </body>
 </html>
